@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@network-utils/dhcp": "^1.0.10",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0"
+  }
+}
