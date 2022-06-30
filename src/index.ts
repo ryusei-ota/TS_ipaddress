@@ -133,9 +133,7 @@ function addip() {
     IPアドレス: ${long2ip(ipLong)}
     サブネットマスク: /${subnetmask2cidr("255.255.255.0")} (${cidr2subnetmask(24)})
     ネットワークアドレス: ${long2ip(getNetworkAddr(ipLong, cidr))}
-    
     使用可能IP: ${long2ip(getNetworkAddr(ipLong, cidr) + 1)} 〜 ${long2ip(getBroadcastAddr(ipLong, cidr) - 1)}
-    
     ブロードキャストアドレス: ${long2ip(getBroadcastAddr(ipLong, cidr))}
     アドレス数: ${getBroadcastAddr(ipLong, cidr) - getNetworkAddr(ipLong, cidr) + 1}
     ホストアドレス数: ${getBroadcastAddr(ipLong, cidr) - getNetworkAddr(ipLong, cidr) - 1}
