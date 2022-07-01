@@ -119,14 +119,13 @@ if (networkAdd(networkAddressList)) {
  * return boolean
 */
 function networkAdd(array: NetworkListType[]) {
-    var postNetworkAddress = long2ip(getNetworkAddr(ipLong, cidr))
     let j = 0
     let flg = true
     //////////////////////////////////////////////////////////////////////////
     // 変更部分：networkaddressListをarrayに変更///////
     /////////////////////////////////////////////////////////////////////////
     array.forEach(function (e) {
-        if (array[j].networkAddress.includes(postNetworkAddress)) {
+        if (array[j].networkAddress.includes(networkAddress)) {
             flg = false
             return true
         }
