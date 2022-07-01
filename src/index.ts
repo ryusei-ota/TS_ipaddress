@@ -43,6 +43,9 @@ const getClass = (ip: number) => {
 
 /**
  * 引数
+ * networkAddress : 使用できるネットワークアドレスか
+ * ipAddress : 作りたいIPアドレス
+ * subnetmask : サブネットマスク
  */
 const networkAddress: string = "192.16.0.0"
 const ipAddress: string = "192.16.0.1"
