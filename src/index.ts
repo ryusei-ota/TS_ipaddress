@@ -44,10 +44,11 @@ const getClass = (ip: number) => {
 /**
  * 引数
  */
-const ipaddress: string = "192.16.0.0"
+const networkAddress: string = "192.16.0.0"
+const ipAddress: string = "192.16.0.1"
 const subnetmask: number = 22
 
-const ipLong = ip2long(ipaddress)
+const ipLong = ip2long(ipAddress)
 const cidr = cidr2long(subnetmask)
 
 /**
@@ -61,39 +62,38 @@ while (i < 255) {
 }
 
 // 指定ipaddressが存在するかしないか
-if (address.includes(ipaddress)) {
+if (address.includes(ipAddress)) {
     console.log("存在します。")
 } else {
     console.log("存在しません。")
 }
 
-
 // ネットワークアドレスがdb内にあると仮定
 export interface NetworkListType {
-    networkaddress: string;
+    networkAddress: string;
     subnetmask: number;
 }
 
-const networkaddressList: NetworkListType[] =
+const networkAddressList: NetworkListType[] =
     [
         {
-            networkaddress: "192.10.0.0",
+            networkAddress: "192.10.0.0",
             subnetmask: 24
         },
         {
-            networkaddress: "10.32.0.0",
+            networkAddress: "10.32.0.0",
             subnetmask: 16
         },
         {
-            networkaddress: "170.150.0.0",
+            networkAddress: "170.150.0.0",
             subnetmask: 24
         },
         {
-            networkaddress: "192.168.0.0",
+            networkAddress: "192.168.0.0",
             subnetmask: 24
         },
         {
-            networkaddress: "10.16.0.0",
+            networkAddress: "10.16.0.0",
             subnetmask: 24
         }
     ];
@@ -101,13 +101,13 @@ const networkaddressList: NetworkListType[] =
 /**
  * ネットワークアドレス作成可能か
  */
-if (networkadd(networkaddressList)) {
-    addip()
+if (networkAdd(networkAddressList)) {
+    addIp()
     //////////////////////////////////////////////////////////////////////////
     // 追加部分：networkaddressListの最終行に追加ってことであってるかな？///////
     /////////////////////////////////////////////////////////////////////////
-    networkaddressList.push({ networkaddress: ipaddress, subnetmask: subnetmask });
-    for (const list of networkaddressList) {
+    networkAddressList.push({ networkAddress: networkAddress, subnetmask: subnetmask });
+    for (const list of networkAddressList) {
         console.log(list);
     }
 } else {
@@ -118,15 +118,15 @@ if (networkadd(networkaddressList)) {
  * ネットワークアドレスがDBにあるか
  * return boolean
 */
-function networkadd(array: NetworkListType[]) {
-    var postnetworkaddress = long2ip(getNetworkAddr(ipLong, cidr))
+function networkAdd(array: NetworkListType[]) {
+    var postNetworkAddress = long2ip(getNetworkAddr(ipLong, cidr))
     let j = 0
     let flg = true
     //////////////////////////////////////////////////////////////////////////
     // 変更部分：networkaddressListをarrayに変更///////
     /////////////////////////////////////////////////////////////////////////
     array.forEach(function (e) {
-        if (array[j].networkaddress.includes(postnetworkaddress)) {
+        if (array[j].networkAddress.includes(postNetworkAddress)) {
             flg = false
             return true
         }
@@ -138,7 +138,7 @@ function networkadd(array: NetworkListType[]) {
 /**
  * 作成
  */
-function addip() {
+function addIp() {
     console.log(`
     IPアドレス: ${long2ip(ipLong)}
     サブネットマスク: /${subnetmask2cidr("255.255.255.0")} (${cidr2subnetmask(24)})
@@ -150,7 +150,6 @@ function addip() {
     IPアドレスクラス: ${getClass(ipLong)}
     `)
 }
-
 
 // 配列の中身を見る
 // for (const x of address) {
